@@ -84,9 +84,10 @@ async function init() {
     
     promptUser()
         .then(function (answers) {
+            console.log(answers);
             const githubReadme = generateReadMe(answers);
-            writeFileAsync("NEWREADME.md", githubReadme);
-            getUserRepo(answers.username, answers.repo);
+            writeFileAsync("CUSTOMREADME.md", githubReadme);
+            getUserRepo(answers.username);
         })
         .then(function () {
             console.log("Successfully wrote to index.html");
@@ -101,19 +102,43 @@ async function init() {
 
 init();
 
-async function getUserRepo(username, reponame){
+async function getUserRepo(username){
     
     console.log("Your GitHub user info: ", username);
     try {
         const { data } = await axios.get(
-           `https://api.github.com/users/${username}/repos?per_page=100`
+           `https://api.github.com/users/${username}/repos?per_page=1`
         );
-    
+
         console.log(data);
-        await writeFileAsync("NEWREADME.md", githubReadme);
+        saveResponseToNewReadMe(data);
+
       
       } catch (err) {
         console.log(err);
       }
     
+}
+
+function saveResponseToNewReadMe(data){
+  let response =  parseData(data);
+    const githubReadme = generateReadMe(response);
+    writeFileAsync("GITHUBREADME.md", githubReadme);
+}
+
+function parseData(data){
+    const githubResponse = [{
+        username: data[0].owner.login,
+        repo: data[0].name,
+        title: data[0].name,
+        description: data[0].description,
+        installation: data[0].installation ? data[0].installation: "No installations required",
+        usage: data[0].usage ? data[0].usage: "No usage data provided",
+        contributing: data[0].contributors_url,
+        tests: data[0].tests ? data[0].tests: "No tests required",
+        license: data[0].license,
+        profile_url: data[0].owner.avatar_url,
+        github_email:  data[0].owner.url
+      }];
+      return githubResponse;
 }
