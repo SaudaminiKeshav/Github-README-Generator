@@ -2,9 +2,12 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 
+const generateReadMe = require('./utils/generateMarkdown.js');
+
 function promptUser() {
     return inquirer.prompt(questions);
 }
+
 const questions = [
     {
         type: 'input',
@@ -69,7 +72,7 @@ const writeFileAsync = util.promisify(writeToFile);
 async function init() {
     promptUser()
         .then(function (answers) {
-            const githubReadme = generateHTML(answers);
+            const githubReadme = generateReadMe(answers);
             writeFileAsync("NEWREADME.md", githubReadme);
         })
         .then(function () {
