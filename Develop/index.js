@@ -54,6 +54,16 @@ const questions = [
         message: "Choose a license for your project.",
         choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
         name: 'license'
+    },
+    {
+        type: 'input',
+        message: "Enter User GitHub profile picture url.",
+        name: 'profile_url'
+    },
+    {
+        type: 'input',
+        message: "Enter User GitHub email.",
+        name: 'github_email'
     }
 ];
 

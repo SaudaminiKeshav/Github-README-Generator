@@ -23,9 +23,33 @@ function generateMarkdown(data) {
 
   ## Installation
   
-  *Steps required to install project and how to get the development environment running:
+  Steps required to install project and how to get the development environment running:
   
   ${data.installation}
+
+  ## Usage 
+  
+  Instructions and examples for use:
+  
+  ${data.usage}
+
+   
+  ## Contributing
+  
+  If you would like to contribute it, you can follow these guidelines for how to do so.
+  
+  ${data.contributing}
+
+  ## Tests
+  
+  Tests for application and how to run them:
+  
+  ${data.tests}
+
+  ## License
+  
+  ${data.license}
+
 `;
 }
 
