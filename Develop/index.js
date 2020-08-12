@@ -55,12 +55,22 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            return console.log(err);
+        }
+
+        console.log("Success! Your README.md file has been generated")
+    });
 }
 
-function init() {
+const writeFileAsync = util.promisify(writeToFile);
+
+async function init() {
     promptUser()
         .then(function (answers) {
-           //Write to file
+            const githubReadme = generateHTML(answers);
+            writeFileAsync("NEWREADME.md", githubReadme);
         })
         .then(function () {
             console.log("Successfully wrote to index.html");
