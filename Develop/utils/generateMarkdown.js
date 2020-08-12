@@ -50,6 +50,13 @@ function generateMarkdown(data) {
   
   ${data.license}
 
+  ## Questions?
+  
+  ![Developer Profile Picture](${data.avatar_url}) 
+  
+  For any questions, please contact me with the information below:
+ 
+  GitHub: [@${data.login}](${data.url})
 `;
 }
 

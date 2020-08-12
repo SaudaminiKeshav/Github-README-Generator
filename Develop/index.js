@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const axios = require("axios");
 
 const generateReadMe = require('./utils/generateMarkdown.js');
 
@@ -80,10 +81,12 @@ function writeToFile(fileName, data) {
 const writeFileAsync = util.promisify(writeToFile);
 
 async function init() {
+    
     promptUser()
         .then(function (answers) {
             const githubReadme = generateReadMe(answers);
             writeFileAsync("NEWREADME.md", githubReadme);
+            getUserRepo(answers.username, answers.repo);
         })
         .then(function () {
             console.log("Successfully wrote to index.html");
@@ -91,7 +94,26 @@ async function init() {
         .catch(function (err) {
             console.log(err);
         });
+
+       
 }
 
 
 init();
+
+async function getUserRepo(username, reponame){
+    
+    console.log("Your GitHub user info: ", username);
+    try {
+        const { data } = await axios.get(
+           `https://api.github.com/users/${username}/repos?per_page=100`
+        );
+    
+        console.log(data);
+        await writeFileAsync("NEWREADME.md", githubReadme);
+      
+      } catch (err) {
+        console.log(err);
+      }
+    
+}
