@@ -57,6 +57,7 @@ function generateMarkdown(data) {
   For any questions, please contact me with the information below:
  
   GitHub: [@${data.login}](${data.url})
+  Email: ${data.email}
 `;
 }
 

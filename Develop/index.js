@@ -3,9 +3,56 @@ const fs = require("fs");
 const util = require("util");
 const axios = require("axios");
 
-const generateReadMe = require('./utils/generateMarkdown.js');
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
-function promptUser() {
+const choiceQuestions = [
+    {
+        type: 'list',
+        message: "Please choose one of the options...",
+        choices: ['Generate custom README file', 'Get README file from a repo'],
+        name: 'repoChoice'
+    }
+]
+
+const userInfo = {
+    type: 'input',
+    message: "What is your GitHub username?",
+    name: 'username'
+}
+
+function getGithubDataFromUser() {
+    const userResponses = inquirer.prompt(userInfo);
+    console.log("You entered: ", userResponses);
+    console.log("Fetching GitHub data...");
+
+    getUserRepo(userResponses);
+}
+
+async function getUserRepo(username) {
+
+    try {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/repos?per_page=1`
+        );
+
+        console.log(data);
+        const githubReadme = generateMarkdown(data);
+        writeFileAsync("GITHUBREADME.md", githubReadme);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+
+function getUserChoice() {
+    const userResponses = inquirer.prompt(choiceQuestions);
+    console.log("You entered: ", userResponses);
+    console.log("Fetching GitHub data...");
+    return userResponses
+}
+
+function promptUserQuestions() {
     return inquirer.prompt(questions);
 }
 
@@ -55,18 +102,28 @@ const questions = [
         message: "Choose a license for your project.",
         choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
         name: 'license'
-    },
-    {
-        type: 'input',
-        message: "Enter User GitHub profile picture url.",
-        name: 'profile_url'
-    },
-    {
-        type: 'input',
-        message: "Enter User GitHub email.",
-        name: 'github_email'
     }
 ];
+
+
+function readmechoice(userChoice){
+    if (userChoice == "Generate custom README file") {
+        promptUserQuestions()
+            .then(function (answers) {
+                console.log(answers);
+                const githubReadme = generateMarkdown(answers);
+                writeFileAsync("CUSTOMREADME.md", githubReadme);
+            })
+            .then(function () {
+                console.log("Successfully wrote to index.html");
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    } else if (userChoice == "Get README file from a repo") {
+        getGithubDataFromUser();
+    }
+}
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
@@ -81,13 +138,10 @@ function writeToFile(fileName, data) {
 const writeFileAsync = util.promisify(writeToFile);
 
 async function init() {
-    
-    promptUser()
-        .then(function (answers) {
-            console.log(answers);
-            const githubReadme = generateReadMe(answers);
-            writeFileAsync("CUSTOMREADME.md", githubReadme);
-            getUserRepo(answers.username);
+     getUserChoice()
+        .then(function (userChoice) {
+           
+          readmechoice(userChoice);
         })
         .then(function () {
             console.log("Successfully wrote to index.html");
@@ -95,50 +149,6 @@ async function init() {
         .catch(function (err) {
             console.log(err);
         });
-
-       
-}
-
+    }
 
 init();
-
-async function getUserRepo(username){
-    
-    console.log("Your GitHub user info: ", username);
-    try {
-        const { data } = await axios.get(
-           `https://api.github.com/users/${username}/repos?per_page=1`
-        );
-
-        console.log(data);
-        saveResponseToNewReadMe(data);
-
-      
-      } catch (err) {
-        console.log(err);
-      }
-    
-}
-
-function saveResponseToNewReadMe(data){
-  let response =  parseData(data);
-    const githubReadme = generateReadMe(response);
-    writeFileAsync("GITHUBREADME.md", githubReadme);
-}
-
-function parseData(data){
-    const githubResponse = [{
-        username: data[0].owner.login,
-        repo: data[0].name,
-        title: data[0].name,
-        description: data[0].description,
-        installation: data[0].installation ? data[0].installation: "No installations required",
-        usage: data[0].usage ? data[0].usage: "No usage data provided",
-        contributing: data[0].contributors_url,
-        tests: data[0].tests ? data[0].tests: "No tests required",
-        license: data[0].license,
-        profile_url: data[0].owner.avatar_url,
-        github_email:  data[0].owner.url
-      }];
-      return githubResponse;
-}
