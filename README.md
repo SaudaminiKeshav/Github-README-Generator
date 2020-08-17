@@ -138,7 +138,7 @@ The application itself can be invoked with node index.js.
   
   Instructions and examples for use:
   
-   ![Usage screen recording](https://avatars3.githubusercontent.com/u/65425185?v=4) 
+   ![Usage screen recording](https://media.giphy.com/media/cIsgoQoYc1ZKZBibV4/giphy.gif) 
   
   When you run node index.js, the application uses the inquirer package to prompt you in the command line with a series of questions about your GitHub and about your project.
 
