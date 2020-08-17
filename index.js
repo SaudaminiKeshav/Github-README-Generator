@@ -56,7 +56,7 @@ const questions = [
     {
         type: 'list',
         message: "Choose a license for your project.",
-        choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
+        choices: ['© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.','Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
         name: 'license'
     },
     {
