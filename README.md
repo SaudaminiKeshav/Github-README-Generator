@@ -100,23 +100,23 @@ You are required to submit the following:
 
 ----------------------------------------------------------------------------------------
 
-```
-## Table of Contents 
 
-* [Installation](#installation)
+> ## Table of Contents 
 
-* [Usage](#usage)
+> * [Installation](#installation)
+
+> * [Usage](#usage)
 
 * [Contributing](#contributing)
 
-* [Tests](#tests)
+> * [Tests](#tests)
 
-* [License](#license)
+> * [License](#license)
 
-#Github-README-Generator
-![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/SaudaminiKeshav/Github-README-Generator?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/SaudaminiKeshav/Github-README-Generator?style=flat&logo=appveyor)
+> #Github-README-Generator
+> ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/SaudaminiKeshav/Github-README-Generator?style=flat&logo=appveyor) ![Badge for GitHub last > > > commit](https://img.shields.io/github/last-commit/SaudaminiKeshav/Github-README-Generator?style=flat&logo=appveyor)
   
-  Check out the badges hosted by [shields.io](https://shields.io/).
+>   Check out the badges hosted by [shields.io](https://shields.io/).
   
   ## Description 
   
@@ -160,4 +160,4 @@ You are required to submit the following:
   GitHub: https://github.com/SaudaminiKeshav
   Email: saudamini.keshav@gmail.com
 
-```
+
