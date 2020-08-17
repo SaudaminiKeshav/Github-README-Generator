@@ -138,7 +138,14 @@ The application itself can be invoked with node index.js.
   
   Instructions and examples for use:
   
+  * Screen recording for generating README of an exiting Github repo
+  
    ![Usage screen recording](https://media.giphy.com/media/cIsgoQoYc1ZKZBibV4/giphy.gif) 
+   
+  * Screen recording for generating custom README for Github repository.
+  
+  ![Usage screen recording](https://media.giphy.com/media/fvxVvcUfxjTDiB8LLX/giphy.gif)
+  
   
   When you run node index.js, the application uses the inquirer package to prompt you in the command line with a series of questions about your GitHub and about your project.
 
