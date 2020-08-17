@@ -99,14 +99,16 @@ You are required to submit the following:
 
 
 ----------------------------------------------------------------------------------------
+### *Below is the custom README generated from the application*
 
-## Table of Contents 
 
-* [Installation](#installation)
+   ## Table of Contents 
 
-* [Usage](#usage)
+     * [Installation](#installation)
 
-* [Contributing](#contributing)
+     * [Usage](#usage)
+
+     * [Contributing](#contributing)
 
 * [Tests](#tests)
 
@@ -123,15 +125,26 @@ You are required to submit the following:
 
   ## Installation
   
-  Steps required to install project and how to get the development environment running:
-  
-  Steps required to install project and how to get the development environment running:  To generate your own README, first run npm install in order to install the following npm package dependencies as specified in the package.json. inquirer that will prompt you for your inputs from the command line, axios to fetch your info from the GitHub API and if the application itself can be invoked with node index.js.
+ Steps required to install project and how to get the development environment running:
+
+To generate your own README, first run npm install in order to install the following npm package dependencies as specified in the package.json:
+
+* inquirer that will prompt you for your inputs from the command line
+* axios to fetch your info from the GitHub API
+
+The application itself can be invoked with node index.js.
 
   ## Usage 
   
   Instructions and examples for use:
   
-  When you run node index.js, the application uses the inquirer package to prompt you in the command line with a series of questions about your GitHub and about your project. The application then takes your responses and uses axios to fetch your GitHub profile from the GitHub API, including your GitHub profile picture (avatar) and email. From there, the application will generate markdown and a table of contents for the README conditionally based on your responses to the Inquirer prompts (so, if you don't answer the optional questions, such as Installation, an Installation section will not be included in your README). The README will also include badges for your GitHub repo. Finally, fs.writeFile is used to generate your project's README.md file. Check out the ExampleREADME.md in this repo as an example. The lorem ipsum is generated thanks to Social Good Ipsum.
+   ![Usage screen recording](https://avatars3.githubusercontent.com/u/65425185?v=4) 
+  
+  When you run node index.js, the application uses the inquirer package to prompt you in the command line with a series of questions about your GitHub and about your project.
+
+The application then takes your responses and uses axios to fetch your GitHub profile from the GitHub API, including your GitHub profile picture (avatar) and email. From there, the application will generate markdown and a table of contents for the README conditionally based on your responses to the Inquirer prompts (so, if you don't answer the optional questions, such as Installation, an Installation section will not be included in your README). The README will also include badges for your GitHub repo.
+
+Finally, fs.writeFile is used to generate your project's README.md file. Check out the ExampleREADME.md in this repo as an example. The lorem ipsum is generated thanks to Social Good Ipsum.
 
    
   ## Contributing
