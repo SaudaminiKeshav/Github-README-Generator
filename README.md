@@ -101,8 +101,8 @@ You are required to submit the following:
 ----------------------------------------------------------------------------------------
 
 
-## Table of Contents 
-
+## Table of Contents |
+----------------------
 * [Installation](#installation)
 
 * [Usage](#usage)
