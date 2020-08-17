@@ -1,4 +1,7 @@
-# Unit 09 Node.js and ES6+ Homework: Good README Generator
+## Unit 09 Node.js and ES6+ Homework: Good README Generator
+
+# Please click on the link to checkout the README Generator application gif * [README Generato](#usage)
+
 
 Create a command-line application that dynamically generates a README.md from a user's input. The application will be invoked with the following command:
 
